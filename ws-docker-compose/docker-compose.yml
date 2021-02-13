@@ -1,0 +1,16 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./api
+    command: ['/bin/sh', '-c', 'npm install --quiet && npm run start']
+    volumes:
+      - ./api:/usr/app/
+      - /api/usr/app/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - custom-network
+networks:
+  custom-network:
+    external: true
